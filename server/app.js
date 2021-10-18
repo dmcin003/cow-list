@@ -13,6 +13,16 @@ app.use(morgan('dev'));
 
 //need to serve client files here
 
+//get request to /api/cows
+app.get('/api/cows',(req,res)=>{
+  res.json('We gonna get all the cows');
+
+});
+//post request to /api/cows
+app.post('/api/cows',(req,res) =>{
+  res.json('We gonna make all the cows');
+});
+
 
 
 app.listen(port,(err)=>{
