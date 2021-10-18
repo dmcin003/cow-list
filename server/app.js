@@ -15,12 +15,25 @@ app.use(morgan('dev'));
 
 //get request to /api/cows
 app.get('/api/cows',(req,res)=>{
-  res.json('We gonna get all the cows');
+  // res.json('We gonna get all the cows');
+  db.query('SELECT * FROM cows',(err, data)=>{
+    res.json(data);
+  })
 
 });
 //post request to /api/cows
 app.post('/api/cows',(req,res) =>{
-  res.json('We gonna make all the cows');
+  let cow = req.body;
+  db.query(`INSERT INTO cows (name,description) VALUES('${cow.name}','${cow.description}')`,(err,data)=>{
+    if(err){
+      console.log(err);
+      res.writeHead(400).end();
+
+    }else{
+
+      res.json(cow);
+    }
+  })
 });
 
 
