@@ -1,6 +1,6 @@
 CREATE DATABASE dairyfarm;
 
-USER dairyfam;
+USE dairyfarm;
 
 
 CREATE TABLE cows(
