@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./db/index.js');
 const morgan = require('morgan');
+const path = require('path');
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //need to serve client files here
+app.use(express.static(path.join(__dirname,'../public')));
 
 //get request to /api/cows
 app.get('/api/cows',(req,res)=>{
