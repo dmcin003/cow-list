@@ -7,6 +7,8 @@ Use this however you like!
 - Read the error in detail...
 - no module found: error cannot read 'react'
   - npm install react to fix this.
+- Error: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's raining it's pouring ')' at line 1
+  - can't input ' in name or description input fields due to sql escaping issue. need to figure out later
 
 ## Learning 📜
 - use nodemon for server changes
