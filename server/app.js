@@ -42,6 +42,21 @@ app.post('/api/cows',(req,res) =>{
   })
 });
 
+//put request to /api/cows
+app.put('/api/cows',(req,res)=>{
+
+  let {oldCow,newCow} = req.body;
+  cows.update(newCow,oldCow,(err,data)=>{
+    if(err){
+      throw new Error(err);
+    }else{
+
+      res.json(data);
+    }
+  })
+
+})
+
 
 
 app.listen(port,(err)=>{
