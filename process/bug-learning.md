@@ -17,3 +17,4 @@ Use this however you like!
 - import componentName from path;
 - export default componentName;
 - Remember when creating your public folder to put your index.html in there as well as css files there or any other static images, etc there.
+- When handling anything with an event USE EVENT.PREVENT.DEFAULT()
