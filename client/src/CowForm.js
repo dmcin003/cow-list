@@ -7,17 +7,36 @@ class CowForm extends React.Component{
 
     this.state = {name:'', description: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   handleSubmit(event){
+
     event.preventDefault();
     console.log('Sumbitted');
+    console.log(this.state.name);
+    console.log(this.state.description);
   }
+
+  handleNameChange(event){
+    event.preventDefault();
+    let cowName = event.target.value;
+    this.setState({name:cowName});
+  }
+
+  handleDescriptionChange(event){
+    event.preventDefault();
+    let cowDesc = event.target.value;
+    this.setState({description:cowDesc})
+  }
+
+
 
   render(){
     return (<form onSubmit={this.handleSubmit}>
-      <input type="text" value={this.state.name} placeholder="Enter Cow name"></input>
-      <input type="text" value={this.state.description} placeholder="Enter description"></input>
+      <input type="text" value={this.state.name} placeholder="Enter Cow name" onChange={this.handleNameChange}></input>
+      <input type="text" value={this.state.description} placeholder="Enter description"onChange={this.handleDescriptionChange}></input>
       <input type="submit" value="Submit"></input>
     </form>)
   }
