@@ -13,7 +13,7 @@ class App extends React.Component{
     }
 
     this.setCurrentCow = this.setCurrentCow.bind(this);
-    this.update = this.update.bind(this);
+
   }
 
   componentDidMount(){
