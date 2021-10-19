@@ -21,7 +21,7 @@ app.get('/api/cows',(req,res)=>{
   // res.json('We gonna get all the cows');
   cows.getAll((err,data)=>{
     if(err){
-      throw new Error(err);
+      res.writeHead(500).send(err);
     }else{
       res.json(data);
     }
@@ -33,8 +33,7 @@ app.post('/api/cows',(req,res) =>{
   let cow = req.body;
   cows.create(cow,(err,data)=>{
     if(err){
-      throw new Error(err);
-      res.writeHead(400).end();
+      res.writeHead(500).send(err);
     }else{
       res.json(data);
 
@@ -49,7 +48,7 @@ app.put('/api/cows',(req,res)=>{
   let {oldCow,newCow} = req.body;
   cows.update(newCow,oldCow,(err,data)=>{
     if(err){
-      throw new Error(err);
+      res.writeHead(500).send(err);
     }else{
 
       res.json(data);
