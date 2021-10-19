@@ -10,6 +10,7 @@ class CowForm extends React.Component{
   }
 
   handleSubmit(event){
+    event.preventDefault();
     console.log('Sumbitted');
   }
 
