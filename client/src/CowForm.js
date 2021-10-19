@@ -1,4 +1,5 @@
 import React from 'react';
+const axios = require('axios')
 
 
 class CowForm extends React.Component{
@@ -17,6 +18,13 @@ class CowForm extends React.Component{
     console.log('Sumbitted');
     console.log(this.state.name);
     console.log(this.state.description);
+    axios.post('/api/cows', this.state)
+      .then((response)=>{
+        console.log(this.state);
+      })
+      .catch((err)=>{
+        console.log(err);
+      });
   }
 
   handleNameChange(event){
@@ -30,6 +38,8 @@ class CowForm extends React.Component{
     let cowDesc = event.target.value;
     this.setState({description:cowDesc})
   }
+
+
 
 
 
