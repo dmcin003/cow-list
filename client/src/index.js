@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.js';
-
+//dummy data
 var list = [
 
   {name:'Buttercup',description:	'a herbaceous plant with bright yellow cup-shaped flowers, common in grassland and as a garden weed. All kinds are poisonous and generally avoided by livestock.'},
@@ -14,4 +14,4 @@ var list = [
 
 ]
 
-ReactDOM.render(<App cowlist={list}/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

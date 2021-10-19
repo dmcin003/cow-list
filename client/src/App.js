@@ -8,7 +8,7 @@ class App extends React.Component{
   constructor(props){
     super(props)
 
-    this.state ={cows:props.cowlist,
+    this.state ={cows:[],
     currentCow: {}
     }
 
@@ -16,11 +16,11 @@ class App extends React.Component{
   }
 
   componentDidMount(){
-    console.log('Im app and Im here');
+
     var cowsList;
     axios.get('/api/cows')
       .then(({data})=>{
-        console.log(data);
+        // console.log(data);
         cowsList = data;
         this.setState({cows:cowsList});
       })
@@ -30,7 +30,7 @@ class App extends React.Component{
   }
 
   setCurrentCow(cow){
-    console.log(cow);
+    // console.log(cow);
 
 
     this.setState({currentCow: cow})

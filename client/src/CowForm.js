@@ -20,7 +20,7 @@ class CowForm extends React.Component{
     console.log(this.state.description);
     axios.post('/api/cows', this.state)
       .then((response)=>{
-        console.log(this.state);
+        // console.log(this.state);
       })
       .catch((err)=>{
         console.log(err);
