@@ -9,8 +9,10 @@ class App extends React.Component{
     super(props)
 
     this.state ={cows:props.cowlist,
-    currentCow: ''
+    currentCow: {}
     }
+
+    this.setCurrentCow = this.setCurrentCow.bind(this);
   }
 
   componentDidMount(){
@@ -27,12 +29,22 @@ class App extends React.Component{
       })
   }
 
+  setCurrentCow(cow){
+    console.log(cow);
+
+
+    this.setState({currentCow: cow})
+  }
+
 
   render(){
     return (<div>
+      <h1>Cow's List</h1>
+      <div><h3>{this.state.currentCow.name}</h3>
+      <h3>{this.state.currentCow.description}</h3></div>
       <div><CowForm /></div>
       {this.state.cows.map((cow)=>{
-        return <Cow cow={cow}/>
+        return <Cow setCow ={this.setCurrentCow} cow={cow}/>
       })}
     </div>)
   }
