@@ -1,6 +1,7 @@
 import React from 'react';
 import Cow from './Cow.js';
 import CowForm from './CowForm.js';
+const axios = require('axios');
 
 
 class App extends React.Component{
@@ -12,11 +13,25 @@ class App extends React.Component{
     }
   }
 
+  componentDidMount(){
+    console.log('Im app and Im here');
+    var cowsList;
+    axios.get('/api/cows')
+      .then(({data})=>{
+        console.log(data);
+        cowsList = data;
+        this.setState({cows:cowsList});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  }
+
 
   render(){
     return (<div>
       <div><CowForm /></div>
-      {this.props.cowlist.map((cow)=>{
+      {this.state.cows.map((cow)=>{
         return <Cow cow={cow}/>
       })}
     </div>)
