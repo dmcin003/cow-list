@@ -25,6 +25,8 @@ class CowForm extends React.Component{
       .catch((err)=>{
         console.log(err);
       });
+
+    this.props.renderCows();
   }
 
   handleNameChange(event){

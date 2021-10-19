@@ -30,6 +30,7 @@ class UpdateForm extends React.Component{
       .catch((err)=>{
         console.log(err);
       });
+    this.props.renderCows();
   }
 
   handleNewNameChange(event){

@@ -7,7 +7,7 @@ import UpdateForm from './UpdateForm.js';
 
   return (<div onClick={()=>{props.setCow(props.cow)}}>{props.cow.name}
   <div></div>
-  <UpdateForm oldCow={props.cow}/>
+  <UpdateForm oldCow={props.cow} renderCows={props.renderCows}/>
   </div>)
 
 }
