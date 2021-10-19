@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db/index.js');
 const morgan = require('morgan');
 const path = require('path');
+const cows = require('./db/models/cows.js');
 
 
 const app = express();
@@ -18,22 +19,25 @@ app.use(express.static(path.join(__dirname,'../public')));
 //get request to /api/cows
 app.get('/api/cows',(req,res)=>{
   // res.json('We gonna get all the cows');
-  db.query('SELECT * FROM cows',(err, data)=>{
-    res.json(data);
+  cows.getAll((err,data)=>{
+    if(err){
+      throw new Error(err);
+    }else{
+      res.json(data);
+    }
   })
 
 });
 //post request to /api/cows
 app.post('/api/cows',(req,res) =>{
   let cow = req.body;
-  db.query(`INSERT INTO cows (name,description) VALUES('${cow.name}','${cow.description}')`,(err,data)=>{
+  cows.create(cow,(err,data)=>{
     if(err){
-      console.log(err);
+      throw new Error(err);
       res.writeHead(400).end();
-
     }else{
+      res.json(data);
 
-      res.json(cow);
     }
   })
 });
