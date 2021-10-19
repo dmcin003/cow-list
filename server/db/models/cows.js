@@ -24,6 +24,19 @@ module.exports = {
       }
     })
 
+  },
+
+  update:(newCow,oldCow,callback)=>{
+
+    db.query(`UPDATE cows SET name='${newCow.name}', description='${newCow.description}'
+    WHERE name='${oldCow.name}'`,(err,data)=>{
+      if(err){
+        callback(err,null);
+      } else{
+        callback(null,data);
+      }
+    })
+
   }
 
 
