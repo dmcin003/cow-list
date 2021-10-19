@@ -13,6 +13,7 @@ class App extends React.Component{
     }
 
     this.setCurrentCow = this.setCurrentCow.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidMount(){
@@ -37,12 +38,16 @@ class App extends React.Component{
   }
 
 
+
+
   render(){
     return (<div>
       <h1>Cow's List</h1>
       <div><h3>{this.state.currentCow.name}</h3>
       <h3>{this.state.currentCow.description}</h3></div>
+      <h4>Enter new Cow here</h4>
       <div><CowForm /></div>
+      <h4>Update cows here</h4>
       {this.state.cows.map((cow)=>{
         return <Cow setCow ={this.setCurrentCow} cow={cow}/>
       })}

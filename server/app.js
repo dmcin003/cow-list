@@ -44,6 +44,7 @@ app.post('/api/cows',(req,res) =>{
 
 //put request to /api/cows
 app.put('/api/cows',(req,res)=>{
+  console.log('sent cows:>>>', req.body);
 
   let {oldCow,newCow} = req.body;
   cows.update(newCow,oldCow,(err,data)=>{

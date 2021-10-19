@@ -28,7 +28,10 @@ module.exports = {
 
   update:(newCow,oldCow,callback)=>{
 
-    db.query(`UPDATE cows SET name='${newCow.name}', description='${newCow.description}'
+    console.log('NEW COW:',newCow);
+    console.log('OLD COW:',oldCow);
+
+    db.query(`UPDATE cows SET name='${newCow.newName}', description='${newCow.newDescription}'
     WHERE name='${oldCow.name}'`,(err,data)=>{
       if(err){
         callback(err,null);
