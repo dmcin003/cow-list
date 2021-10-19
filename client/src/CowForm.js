@@ -21,12 +21,12 @@ class CowForm extends React.Component{
     axios.post('/api/cows', this.state)
       .then((response)=>{
         // console.log(this.state);
+        this.props.renderCows();
       })
       .catch((err)=>{
         console.log(err);
       });
 
-    this.props.renderCows();
   }
 
   handleNameChange(event){

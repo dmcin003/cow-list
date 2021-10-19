@@ -26,11 +26,11 @@ class UpdateForm extends React.Component{
     axios.put('/api/cows',cows)
       .then((response)=>{
         console.log(response);
+        this.props.renderCows();
       })
       .catch((err)=>{
         console.log(err);
       });
-    this.props.renderCows();
   }
 
   handleNewNameChange(event){
