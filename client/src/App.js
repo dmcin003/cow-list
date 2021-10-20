@@ -8,8 +8,9 @@ class App extends React.Component{
   constructor(props){
     super(props)
 
-    this.state ={cows:[],
-    currentCow: {}
+    this.state ={
+      cows:[],
+      currentCow: {}
     }
 
     this.setCurrentCow = this.setCurrentCow.bind(this);
@@ -22,12 +23,12 @@ class App extends React.Component{
   }
 
   getCows(){
-    var cowsList;
+
     axios.get('/api/cows')
       .then(({data})=>{
         // console.log(data);
-        cowsList = data;
-        this.setState({cows:cowsList});
+
+        this.setState({cows:data});
       })
       .catch((err)=>{
         console.log(err);
@@ -36,9 +37,6 @@ class App extends React.Component{
   }
 
   setCurrentCow(cow){
-    // console.log(cow);
-
-
     this.setState({currentCow: cow})
   }
 
@@ -48,13 +46,15 @@ class App extends React.Component{
   render(){
     return (<div>
       <h1>Cow's List</h1>
-      <div><h3>{this.state.currentCow.name}</h3>
-      <h3>{this.state.currentCow.description}</h3></div>
+      <div>
+        <h3>{this.state.currentCow.name}</h3>
+        <h3>{this.state.currentCow.description}</h3>
+      </div>
       <h4>Enter new Cow here</h4>
       <div><CowForm renderCows={this.getCows}/></div>
       <h4>Update cows here</h4>
-      {this.state.cows.map((cow)=>{
-        return <Cow setCow ={this.setCurrentCow} cow={cow} renderCows={this.getCows}/>
+      {this.state.cows.map((cow, i)=>{
+        return <Cow key={i} setCow ={this.setCurrentCow} cow={cow} renderCows={this.getCows}/>
       })}
     </div>)
   }
