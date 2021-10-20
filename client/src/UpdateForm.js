@@ -8,21 +8,18 @@ class UpdateForm extends React.Component{
 
     this.state = {newName:'',newDescription:''};
 
-    this.handleNewNameChange = this.handleNewNameChange.bind(this);
-    this.handleNewDescriptionChange = this.handleNewDescriptionChange.bind(this);
+
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
   handleUpdate(event){
 
     event.preventDefault();
-    console.log('Sumbitted');
 
-    console.log('Old cow:',this.props.oldCow);
-    console.log('New cow:',this.state);
     let cows = {oldCow:this.props.oldCow,newCow:this.state};
-    console.log(cows);
+
     axios.put('/api/cows',cows)
       .then((response)=>{
         console.log(response);
@@ -31,26 +28,24 @@ class UpdateForm extends React.Component{
       .catch((err)=>{
         console.log(err);
       });
+      this.setState({newName:'',newDescription:''})
   }
 
-  handleNewNameChange(event){
-    event.preventDefault();
-    let newName = event.target.value;
-    this.setState({newName:newName});
-  }
 
-  handleNewDescriptionChange(event){
-    event.preventDefault();
-    let newDesc = event.target.value;
-    this.setState({newDescription:newDesc});
+
+  handleChange(event){
+
+
+    this.setState({[event.target.name]:event.target.value})
+
   }
 
 
 
   render(){
     return(<form onSubmit={this.handleUpdate}>
-      <input type="text" value={this.state.newName} placeholder="Enter New cow name" onChange={this.handleNewNameChange}></input>
-      <input type="text" value={this.state.newDescription} placeholder="Enter New description" onChange={this.handleNewDescriptionChange}></input>
+      <input type="text" name='newName' value={this.state.newName} placeholder="Enter New cow name" onChange={this.handleChange}></input>
+      <input type="text" name='newDescription' value={this.state.newDescription} placeholder="Enter New description" onChange={this.handleChange}></input>
       <input type="submit" value="Update"></input>
     </form>)
   }

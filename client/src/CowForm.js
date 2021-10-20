@@ -8,16 +8,13 @@ class CowForm extends React.Component{
 
     this.state = {name:'', description: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleSubmit(event){
 
     event.preventDefault();
-    console.log('Sumbitted');
-    console.log(this.state.name);
-    console.log(this.state.description);
+
     axios.post('/api/cows', this.state)
       .then((response)=>{
         // console.log(this.state);
@@ -27,18 +24,18 @@ class CowForm extends React.Component{
         console.log(err);
       });
 
+   this.setState({name:'',description:''});
+
   }
 
-  handleNameChange(event){
-    event.preventDefault();
-    let cowName = event.target.value;
-    this.setState({name:cowName});
-  }
 
-  handleDescriptionChange(event){
-    event.preventDefault();
-    let cowDesc = event.target.value;
-    this.setState({description:cowDesc})
+
+  handleChange(e) {
+
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+
   }
 
 
@@ -47,8 +44,14 @@ class CowForm extends React.Component{
 
   render(){
     return (<form onSubmit={this.handleSubmit}>
-      <input type="text" value={this.state.name} placeholder="Enter Cow name" onChange={this.handleNameChange}></input>
-      <input type="text" value={this.state.description} placeholder="Enter description"onChange={this.handleDescriptionChange}></input>
+      <label>
+        Name
+      <input type="text" name='name' value={this.state.name} placeholder="Enter Cow name" onChange={this.handleChange}></input>
+      </label>
+      <label>
+        Description
+      <input type="text" name='description' value={this.state.description} placeholder="Enter description"onChange={this.handleChange}></input>
+      </label>
       <input type="submit" value="Submit"></input>
     </form>)
   }
