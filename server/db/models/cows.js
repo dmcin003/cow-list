@@ -41,6 +41,19 @@ module.exports = {
       }
     })
 
+  },
+
+  delete:(cow, callback)=>{
+    console.log('This is the cow to be deleted:', cow);
+    db.query(`DELETE FROM cows WHERE name='${cow.name}'`,(err,data)=>{
+      if(err){
+        callback(err,null);
+        console.log(err);
+
+      } else{
+        callback(null,data);
+      }
+    })
   }
 
 

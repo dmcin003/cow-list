@@ -55,7 +55,22 @@ app.put('/api/cows',(req,res)=>{
     }
   })
 
-})
+});
+
+
+app.delete('/api/cows',(req,res)=>{
+  let cow = JSON.stringify(res.data);
+  console.log('What am I: ', cow);
+  cows.delete(cow,(err, data)=>{
+    if(err){
+      console.log('I am here');
+      res.writeHead(500).send(err);
+    } else {
+      console.log('Am I here');
+      res.json(data);
+    }
+  })
+});
 
 
 
