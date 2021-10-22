@@ -59,8 +59,9 @@ app.put('/api/cows',(req,res)=>{
 
 
 app.delete('/api/cows',(req,res)=>{
-  let cow = JSON.stringify(res.data);
-  console.log('What am I: ', cow);
+  console.log('MY REQUEST:',req.cow);
+  console.log('MY REQUEST:',req.body);
+  let cow = req.body;
   cows.delete(cow,(err, data)=>{
     if(err){
       console.log('I am here');

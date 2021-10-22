@@ -7,7 +7,7 @@ import DeleteButton from './DeleteButton.js';
   <div>
     <div onClick={()=>{props.setCow(props.cow)}}>{props.cow.name}</div>
   <UpdateForm oldCow={props.cow} renderCows={props.renderCows}/>
-  <DeleteButton cow={props.cow}/>
+  <DeleteButton cow={props.cow} renderCows={props.renderCows}/>
   </div>)
 
 }
